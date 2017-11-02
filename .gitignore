@@ -23,6 +23,13 @@ dist/
 nbdist/
 .nb-gradle/
 
+/.settings/
+/db/
+/target/
+/.classpath
+/.project
+/derby.log
+
 # Ignorando pasta de compilados do Maven
 
 /target/*
@@ -30,19 +37,11 @@ nbdist/
 
 
 # Ignorando arquivos de configuração do Intelij IDEA
-*
-.iml
+
+*.iml
 
 
 
-# Mantendo o .gitignore no versionamento
+#Mantendo o .gitignore no versionamento
 
 !.gitignore
-
-
-/.settings/
-/db/
-/target/
-/.classpath
-/.project
-/derby.log
