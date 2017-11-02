@@ -22,3 +22,27 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# Ignorando pasta de compilados do Maven
+
+/target/*
+
+
+
+# Ignorando arquivos de configuração do Intelij IDEA
+*
+.iml
+
+
+
+# Mantendo o .gitignore no versionamento
+
+!.gitignore
+
+
+/.settings/
+/db/
+/target/
+/.classpath
+/.project
+/derby.log

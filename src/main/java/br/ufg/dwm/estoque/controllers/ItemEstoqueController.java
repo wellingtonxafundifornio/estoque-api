@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufg.dwm.estoque.controllers.vo.ItemEstoqueVo;
 import br.ufg.dwm.estoque.model.ItemEstoque;
 import br.ufg.dwm.estoque.services.ItemEstoqueService;
 
@@ -20,8 +21,13 @@ public class ItemEstoqueController {
     private ItemEstoqueService itemEstoqueService;
 
     @PostMapping()
-    public ItemEstoque salvarItemEstoqueVo(ItemEstoqueVo itemVo){
-        return itemEstoqueService.salvarItemEstoqueVo(itemVo);
+    public ItemEstoque salvarItemEstoqueVo(@RequestBody ItemEstoque item){
+        return itemEstoqueService.salvarItemEstoque(item);
+    }
+    
+    @GetMapping("/{id}")
+    public ItemEstoque consultarItemVoPorId(@PathVariable Long id){
+        return itemEstoqueService.consultarItemVoPorId(id);
     }
 
     @GetMapping

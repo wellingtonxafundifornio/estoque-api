@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.ufg.dwm.estoque.controllers.vo.ItemEstoqueVo;
 import br.ufg.dwm.estoque.model.Estoque;
 import br.ufg.dwm.estoque.model.ItemEstoque;
 import br.ufg.dwm.estoque.model.Produto;
@@ -23,15 +22,15 @@ public class ItemEstoqueService {
     @Autowired
     private EstoqueService estoqueService;
 
-    public ItemEstoque salvarItemEstoqueVo(ItemEstoqueVo itemVo){
-        Produto produto = produtoService.consultarProdutoPorId(itemVo.getProdutoId());
-        Estoque estoque = estoqueService.consultarEstoquePorId(itemVo.getEstoqueId());
+    public ItemEstoque salvarItemEstoque(ItemEstoque item){
+        Produto produto = produtoService.consultarProdutoPorId(item.getProduto().getId());
+        Estoque estoque = estoqueService.consultarEstoquePorId(item.getEstoque().getId());
 
         ItemEstoque itemEstoque = new ItemEstoque();
         itemEstoque.setEstoque(estoque);
         itemEstoque.setProduto(produto);
-        itemEstoque.setQuantidade(itemVo.getQuantidade());
-        itemEstoque.setData(itemVo.getData());
+        itemEstoque.setQuantidade(item.getQuantidade());
+        itemEstoque.setData(item.getData());
 
         return itemEstoqueRepository.save(itemEstoque);
     }
@@ -39,5 +38,9 @@ public class ItemEstoqueService {
     public List<ItemEstoque> listarItensEstoque(){
         return (List<ItemEstoque>) itemEstoqueRepository.findAll();
     }
+
+	public ItemEstoque consultarItemVoPorId(Long id) {
+		return itemEstoqueRepository.findOne(id);
+	}
 
 }

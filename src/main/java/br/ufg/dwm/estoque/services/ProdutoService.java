@@ -3,7 +3,6 @@ package br.ufg.dwm.estoque.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,8 +12,7 @@ import br.ufg.dwm.estoque.repositories.ProdutoRepository;
 @Service
 public class ProdutoService {
 
-    @Value("${url-venda-api}")
-    private static String URL_VENDA_API;
+    private static String URL_VENDA_API = "http://localhost:5005/api/produtosRecentementeCadastrados";
 
     @Autowired
     ProdutoRepository produtoRepository;
@@ -35,7 +33,7 @@ public class ProdutoService {
 
     public void enviarProdutoParaSistemaDeVendas(Produto produto) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForEntity(URL_VENDA_API + "/produtos", produto, Produto.class);
+        restTemplate.postForEntity(URL_VENDA_API, produto, Produto.class);
     }
 
 }
